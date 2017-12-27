@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_ar" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40f2762f-4613-4eab-a996-bf8160815e94">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     eventartists_A.`arID` AS eventartists_A_arID,
+     artistsdetails.`ar_name` AS artistsdetails_ar_name,
+     eventdetails.`eventStartDate` AS eventdetails_eventStartDate
+FROM
+     `artistsdetails` artistsdetails INNER JOIN `eventartists` eventartists_A ON artistsdetails.`arID` = eventartists_A.`arID`
+     INNER JOIN `eventdetails` eventdetails ON eventartists_A.`eventID` = eventdetails.`eventID`]]>
+	</queryString>
+	<field name="eventartists_A_arID" class="java.lang.Integer"/>
+	<field name="artistsdetails_ar_name" class="java.lang.String"/>
+	<field name="eventdetails_eventStartDate" class="java.sql.Date"/>
+	<group name="eventdetails_eventStartDate">
+		<groupExpression><![CDATA[$F{eventdetails_eventStartDate}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="1c2db094-bbdf-428c-bc00-9f93fce79f31"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Date]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="9937ef15-5a7c-4ffe-8ffb-22b837cefd68"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{eventdetails_eventStartDate}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="fe5c2b05-2d8b-45ec-bdc3-a177e26c9f57"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="b6e67b5a-4dc1-44b7-8785-3ba09882f895"/>
+				<staticText>
+					<reportElement x="20" y="20" width="319" height="43" forecolor="#FFFFFF" uuid="5ff43ac1-6035-4f81-852f-7dde86e566d1"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pre Booked Artists]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="377" y="20" width="198" height="43" forecolor="#FFFFFF" uuid="d0c9d141-bee0-4cfa-af97-44a3533b69b2"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Artists who are NOT AVAILABLE on selected dates]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="1d513ba8-6052-4cc5-9b89-865690141510"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5ea88846-fa3b-4959-a741-a2df8bffd430"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Artist ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="277" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="51fbee92-fd2c-48c1-8f30-1098c95987e9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Artist Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="aaff9b96-9c10-476e-b3f1-aea3564374c6"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="277" height="20" uuid="c78f910d-23f8-4a8c-a66c-5c443e1230fe"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{eventartists_A_arID}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="277" y="0" width="277" height="20" uuid="8dd04eca-c27f-427f-9e60-c76d3d7aadfd"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{artistsdetails_ar_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="2cb9ddc8-7f1e-4cc3-ad1e-c3f3b74fc774"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="2ec7246d-dcab-4b9f-a6b3-ec47fc692967"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="cfedff2b-d2b9-4b11-be65-736fa06363d6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
